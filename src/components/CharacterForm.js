@@ -4,7 +4,7 @@ import styles from "./CharacterForm.module.css";
 export default function CharacterForm(props) {
   const { character = {}, actions } = props;
   const charId = character._id;
-  const submitAction = (charId && actions.update) || actions.create;
+  const submitAction = (charId && actions.updateCharacter) || actions.createCharacter;
   const submitLabel = (charId && "update") || "create";
   const [name, setName] = useState("");
   const [faction, setFaction] = useState("");

@@ -15,7 +15,10 @@ export default function Character() {
   });
 
   const actions = {
-    createCharacter: values => dispatch(createCharacter(values)),
+    createCharacter: values => {
+      dispatch(createCharacter(values))
+      history.push('/')
+    },
     updateCharacter: values => dispatch(updateCharacter(charId, values)),
     deleteCharacter: () => {
       dispatch(deleteCharacter(charId))

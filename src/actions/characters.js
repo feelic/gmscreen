@@ -23,7 +23,8 @@ export function createCharacter(character) {
       .then(({ data = {} }) => {
         return dispatch({
           type: types.CREATE_CHARACTER_SUCCESS,
-          characters: data
+          character: data,
+          charId: data._id
         });
       })
       .catch(error =>
