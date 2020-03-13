@@ -16,7 +16,7 @@ export default function App() {
   return (
     <div className={styles.ListPanel}>
       <h1>Characters</h1>
-      {characters.map(character => {
+      {Object.values(characters).map(character => {
         return <CharacterThumbnail key={character._id} character={character} />;
       })}
       <Link to={"/character/new"}>new character</Link>

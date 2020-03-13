@@ -14,13 +14,13 @@ export default function callApi(method, endpoint, body) {
 
   return fetch(`${apiBaseUrl}/${endpoint}`, {
     method,
-    body,
-    withCredentials: true
+    body: JSON.stringify(body),
+    // withCredentials: true,
     // credentials: 'include',
-    // headers: {
-    //   Authorization: `Bearer ${authToken}`,
-    //   'Content-Type': 'application/json',
-    // },
+    headers: {
+      // Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json',
+    },
   }).then(response => {
     const result = response.json();
 

@@ -1,19 +1,26 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createCharacter, updateCharacter } from "../actions/characters";
+import { createCharacter, updateCharacter, deleteCharacter } from "../actions/characters";
 import CharacterForm from "../components/CharacterForm";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import styles from "./Character.module.css";
 
 export default function Character() {
   const dispatch = useDispatch();
   const { charId } = useParams();
+  const history = useHistory();
 
-  const character = useSelector(state => state.characters[charId]);
+  const character = useSelector(state => {
+    return state.characters[charId] || {};
+  });
 
   const actions = {
-    create: values => dispatch(createCharacter(values)),
-    update: values => dispatch(updateCharacter(charId, values))
+    createCharacter: values => dispatch(createCharacter(values)),
+    updateCharacter: values => dispatch(updateCharacter(charId, values)),
+    deleteCharacter: () => {
+      dispatch(deleteCharacter(charId))
+      history.push('/')
+    }
   };
 
   return (

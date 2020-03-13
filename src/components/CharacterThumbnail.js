@@ -8,7 +8,7 @@ export default function CharacterThumbnail(props) {
   return (
     <div className={styles.CharacterThumbnail}>
       <span>{character.name}</span>
-      <Link to={`/character/${character.id}`}>view details</Link>
+      <Link to={`/character/${character._id}`}>view details</Link>
     </div>
   );
 }
