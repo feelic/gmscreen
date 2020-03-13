@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
+import ImageForm from "./ImageForm";
 import styles from "./CharacterForm.module.css";
+import { getConfig } from "../services/read-config";
 
 export default function CharacterForm(props) {
+  const apiBaseUrl = getConfig("apiBaseUrl");
   const { character = {}, actions } = props;
   const charId = character._id;
-  const submitAction = (charId && actions.updateCharacter) || actions.createCharacter;
+  const submitAction =
+    (charId && actions.updateCharacter) || actions.createCharacter;
   const submitLabel = (charId && "update") || "create";
   const [name, setName] = useState("");
   const [faction, setFaction] = useState("");
   const [description, setDescription] = useState("");
+  const [image, setImage] = useState();
   const [status, setStatus] = useState("alive");
 
   useEffect(() => {
@@ -16,6 +21,7 @@ export default function CharacterForm(props) {
     setFaction(character.faction || "");
     setDescription(character.description || "");
     setStatus(character.status || "alive");
+    setImage(character.image);
   }, [character, charId]);
 
   return (
@@ -60,8 +66,23 @@ export default function CharacterForm(props) {
         />
       </div>
       <div className={styles.formBlock}>
+        {image && (
+          <img
+            src={`${apiBaseUrl}/images/${image}`}
+            alt="portrait of the character"
+          />
+        )}
+        <ImageForm
+          onUpload={imageName => {
+            setImage(imageName);
+          }}
+        />
+      </div>
+      <div className={styles.formBlock}>
         <button
-          onClick={() => submitAction({ name, faction, description, status })}
+          onClick={() =>
+            submitAction({ name, faction, description, status, image })
+          }
         >
           {submitLabel}
         </button>

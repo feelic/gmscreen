@@ -40,7 +40,7 @@ export function updateCharacter(charId, character) {
       .then(({ data = {} }) => {
         return dispatch({
           type: types.UPDATE_CHARACTER_SUCCESS,
-          character,
+          character: data,
           charId
         });
       })
