@@ -1,0 +1,5 @@
+.CharacterPanel {
+  flex-grow: 1;
+    border-left: 1px solid gray;
+    padding: 15px;
+}
