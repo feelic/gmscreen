@@ -2,11 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { readCharacters } from "../actions/characters";
 import CharacterThumbnail from "../components/CharacterThumbnail";
-import {
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./App.module.css";
 
 export default function App() {
@@ -21,8 +17,9 @@ export default function App() {
     <div className={styles.ListPanel}>
       <h1>Characters</h1>
       {characters.map(character => {
-        return <CharacterThumbnail key={character.id} character={character} />;
+        return <CharacterThumbnail key={character._id} character={character} />;
       })}
+      <Link to={"/character/new"}>new character</Link>
     </div>
   );
 }

@@ -1,14 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createCharacter, updateCharacter } from "../actions/characters";
 import CharacterForm from "../components/CharacterForm";
-import {
-  Switch,
-  Route,
-  Link,
-  useParams
-} from "react-router-dom";
-import styles from "./Character.module.css"
+import { Link, useParams } from "react-router-dom";
+import styles from "./Character.module.css";
 
 export default function Character() {
   const dispatch = useDispatch();
@@ -16,16 +11,15 @@ export default function Character() {
 
   const character = useSelector(state => state.characters[charId]);
 
-
   const actions = {
-    create: (values) => dispatch(createCharacter(values)),
-    update: (values) => dispatch(updateCharacter(charId, values))
+    create: values => dispatch(createCharacter(values)),
+    update: values => dispatch(updateCharacter(charId, values))
   };
 
   return (
     <div className={styles.CharacterPanel}>
       <CharacterForm actions={actions} character={character} />
-      <Link to={'/'}>close</Link>
+      <Link to={"/"}>close</Link>
     </div>
   );
 }

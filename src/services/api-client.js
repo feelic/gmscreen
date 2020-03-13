@@ -1,4 +1,4 @@
-import { getConfig } from './read-config';
+import { getConfig } from "./read-config";
 
 /**
  * Base API call method
@@ -9,19 +9,19 @@ import { getConfig } from './read-config';
  * @return {Promise} promise  promise with the API call
  */
 export default function callApi(method, endpoint, body) {
-  const apiBaseUrl = getConfig('apiBaseUrl');
+  const apiBaseUrl = getConfig("apiBaseUrl");
   // const authToken = getConfig('authToken');
 
   return fetch(`${apiBaseUrl}/${endpoint}`, {
     method,
     body,
-    withCredentials: true,
+    withCredentials: true
     // credentials: 'include',
     // headers: {
     //   Authorization: `Bearer ${authToken}`,
     //   'Content-Type': 'application/json',
     // },
-  }).then((response) => {
+  }).then(response => {
     const result = response.json();
 
     if (result.body && result.body.acknowledged === false) {
