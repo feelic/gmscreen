@@ -17,6 +17,10 @@
 .formBlock select {
   margin: 10px 0;
 }
+.formBlock textarea {
+  overflow: auto;
+  resize: none;
+}
 .formBlock img {
   width: 180px;
 }
