@@ -29,7 +29,7 @@ export default function CharacterForm(props) {
 
   return (
     <div className={styles.CharacterForm}>
-      <h1>{formTitle}</h1>
+      <h1 className={styles.formTitle}>{formTitle}</h1>
       <div className={styles.formBlock}>
         <label htmlFor="characterName">Name</label>
         <input

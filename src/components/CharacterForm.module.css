@@ -1,5 +1,8 @@
 .CharacterForm {
 }
+.formTitle {
+  width: calc(100% - 40px);
+}
 .formBlock {
   margin: 10px 0;
   display: flex;
@@ -16,6 +19,11 @@
 .formBlock img,
 .formBlock select {
   margin: 10px 0;
+}
+
+.formBlock input,
+.formBlock select {
+  max-width: 300px;
 }
 .formBlock textarea {
   overflow: auto;
