@@ -1,0 +1,23 @@
+.thumbnail {
+  margin: 15px;
+  padding: 15px;
+  background-color: rgba(200, 200, 200, 0.7);
+  text-decoration: none;
+  max-width: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+.name {
+  display: block;
+  width: 100%;
+  color: black;
+  font-size: 24px;
+  margin: 0;
+  font-weight: bold;
+}
+.portrait {
+  display: block;
+  width: 180px;
+}

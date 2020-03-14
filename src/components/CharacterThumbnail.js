@@ -6,16 +6,16 @@ import { getConfig } from "../services/read-config";
 export default function CharacterThumbnail(props) {
   const apiBaseUrl = getConfig("apiBaseUrl");
   const { character = {} } = props;
-  const {_id, name, image} = character;
+  const { _id, name, image } = character;
 
   return (
-    <div className={styles.CharacterThumbnail}>
-      <span>{name}</span>
+    <Link to={`/character/${_id}`} className={styles.thumbnail}>
+      <h2 className={styles.name}>{name}</h2>
       <img
+        className={styles.portrait}
         src={`${apiBaseUrl}/images/${image}`}
         alt={`portrait of ${name}`}
       />
-      <Link to={`/character/${_id}`}>view details</Link>
-    </div>
+    </Link>
   );
 }

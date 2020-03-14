@@ -1,0 +1,28 @@
+.CharacterForm {
+}
+.formBlock {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  /* align-items: center; */
+}
+.formBlock label {
+  width: 120px;
+  font-size: 18px;
+}
+.formBlock input,
+.formBlock textarea,
+.formBlock img,
+.formBlock select {
+  margin: 10px 0;
+}
+.formBlock img {
+  width: 180px;
+}
+.actions button {
+  border: none;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+}

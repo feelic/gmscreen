@@ -1,6 +1,4 @@
-import React, { Fragment, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react";
 import uploadImage from "../services/upload-image";
 
 export default function(props) {
@@ -22,12 +20,7 @@ export default function(props) {
     <div>
       {loading && "loading"}
       {!loading && (
-        <Fragment>
-          <label htmlFor="imageUpload">
-            <FontAwesomeIcon icon={faImage} color="#3B5998" size="10x" />
-          </label>
           <input type="file" id="single" onChange={handleChange} />
-        </Fragment>
       )}
     </div>
   );

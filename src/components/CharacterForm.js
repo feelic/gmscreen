@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import ImageForm from "./ImageForm";
 import styles from "./CharacterForm.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { getConfig } from "../services/read-config";
 
 export default function CharacterForm(props) {
   const apiBaseUrl = getConfig("apiBaseUrl");
   const { character = {}, actions } = props;
-  const charId = character._id;
-  const submitAction =
-    (charId && actions.updateCharacter) || actions.createCharacter;
-  const submitLabel = (charId && "update") || "create";
   const [name, setName] = useState("");
   const [faction, setFaction] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState();
   const [status, setStatus] = useState("alive");
+  const charId = character._id;
+  const submitAction =
+    (charId && actions.updateCharacter) || actions.createCharacter;
+  const submitLabel = (charId && "update") || "create";
+  const formTitle = (charId && `Edit ${name}`) || "Create new character";
 
   useEffect(() => {
     setName(character.name || "");
@@ -26,6 +29,7 @@ export default function CharacterForm(props) {
 
   return (
     <div className={styles.CharacterForm}>
+      <h1>{formTitle}</h1>
       <div className={styles.formBlock}>
         <label htmlFor="characterName">Name</label>
         <input
@@ -58,14 +62,18 @@ export default function CharacterForm(props) {
       </div>
       <div className={styles.formBlock}>
         <label htmlFor="characterStatus">Status</label>
-        <input
-          type="text"
+        <select
           id="characterStatus"
           value={status}
           onChange={e => setStatus(e.target.value)}
-        />
+        >
+          <option value="alive">alive</option>
+          <option value="dead">dead</option>
+          <option value="missing">missing</option>
+        </select>
       </div>
       <div className={styles.formBlock}>
+        <label htmlFor="characterStatus">Portrait</label>
         {image && (
           <img
             src={`${apiBaseUrl}/images/${image}`}
@@ -78,16 +86,18 @@ export default function CharacterForm(props) {
           }}
         />
       </div>
-      <div className={styles.formBlock}>
+      <div className={styles.actions}>
         <button
           onClick={() =>
             submitAction({ name, faction, description, status, image })
           }
         >
-          {submitLabel}
+          <FontAwesomeIcon icon={faCheck} /> {submitLabel}
         </button>
         {charId && (
-          <button onClick={actions.deleteCharacter}>delete character</button>
+          <button onClick={actions.deleteCharacter}>
+            <FontAwesomeIcon icon={faTrash} /> delete character
+          </button>
         )}
       </div>
     </div>

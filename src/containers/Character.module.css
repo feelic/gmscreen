@@ -1,5 +1,13 @@
 .CharacterPanel {
+  padding: 15px;
+  background-color: rgba(200, 200, 200, 0.7);
   flex-grow: 1;
-    border-left: 1px solid gray;
-    padding: 15px;
+  min-width: 400px;
+  border-left: 1px solid gray;
+}
+.closeCharacterPanel {
+  position:absolute;
+  top: 46px;
+  right: 30px;
+  color: black;
 }
