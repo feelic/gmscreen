@@ -25,7 +25,8 @@ export default function callApi(method, endpoint, body) {
 
   if (! method === 'GET') {
     payload.body = JSON.stringify(body)
-  } else {
+  }
+  if (body && method === 'GET'){
     getParameters = '?' + Object.keys(body).map(key => key + '=' + body[key]).join('&');
   }
 

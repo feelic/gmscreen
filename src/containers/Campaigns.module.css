@@ -1,0 +1,11 @@
+.CampaignsList {
+  margin: 15px;
+  padding: 15px;
+  background-color: rgba(200, 200, 200, 0.7);
+  width: 100%;
+}
+
+.createButton {
+  color: black;
+  text-decoration: none;
+}

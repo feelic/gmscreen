@@ -25,13 +25,18 @@ readConfig().then(() => {
             <Route exact path="/">
               <Campaigns />
             </Route>
-            <Route exact path="/campaign/:campaignId">
+            <Route exact path="/campaign/new">
+              <Campaign />
+            </Route>
+            <Route path="/campaign/:campaignId">
               <Campaign />
             </Route>
             <Route exact path="/campaign/:campaignId/character/new">
+              <Campaign />
               <Character />
             </Route>
             <Route path="/campaign/:campaignId/character/:charId">
+              <Campaign />
               <Character />
             </Route>
           </Switch>

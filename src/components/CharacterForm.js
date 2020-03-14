@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ImageForm from "./ImageForm";
-import styles from "./CharacterForm.module.css";
+import styles from "./Form.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { getConfig } from "../services/read-config";
@@ -73,7 +73,7 @@ export default function CharacterForm(props) {
         </select>
       </div>
       <div className={styles.formBlock}>
-        <label htmlFor="characterStatus">Portrait</label>
+        <label htmlFor="characterPortait">Portrait</label>
         {image && (
           <img
             src={`${apiBaseUrl}/images/${image}`}
