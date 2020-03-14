@@ -1,0 +1,17 @@
+.FiltersBar {
+  display: flex;
+  flex-direction: row;
+  margin: 0 20px;
+}
+.FiltersBar h2 {
+  font-size: 18px;
+  margin: 5px 0 ;
+}
+
+.filter {
+  margin: 0 5px;
+}
+
+.filterValue {
+  line-height: 20px;
+}

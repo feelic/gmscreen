@@ -18,3 +18,29 @@ export default function characters(state = [], action) {
       return state;
   }
 }
+
+export function getFilters(state) {
+  const availableFilters = ["faction", "status"];
+
+  return availableFilters.reduce((filters, filter) => {
+    return {
+      ...filters,
+      [filter]: [...new Set(Object.values(state.characters).map(char => char[filter]))]
+    };
+  }, {});
+}
+
+export function getFilteredCharacters(state, filters = {}) {
+  let filteredCharacters = Object.values(state.characters);
+
+  if (!Object.keys(filters).length) {
+    return filteredCharacters;
+  }
+
+  Object.keys(filters).forEach(filter => {
+    filteredCharacters = filteredCharacters.filter(char => {
+      return filters[filter].includes(char[filter]);
+    });
+  });
+  return filteredCharacters;
+}
