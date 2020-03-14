@@ -10,9 +10,7 @@ import { getConfig } from "./read-config";
  */
 export default function callApi(method, endpoint, body) {
   const apiBaseUrl = getConfig("apiBaseUrl");
-  // const authToken = getConfig('authToken');
-
-  return fetch(`${apiBaseUrl}/${endpoint}`, {
+  const payload = {
     method,
     body: JSON.stringify(body),
     // withCredentials: true,
@@ -21,7 +19,18 @@ export default function callApi(method, endpoint, body) {
       // Authorization: `Bearer ${authToken}`,
       'Content-Type': 'application/json',
     },
-  }).then(response => {
+  }
+  let getParameters = '';
+  // const authToken = getConfig('authToken');
+
+  if (! method === 'GET') {
+    payload.body = JSON.stringify(body)
+  } else {
+    getParameters = '?' + Object.keys(body).map(key => key + '=' + body[key]).join('&');
+  }
+
+
+  return fetch(`${apiBaseUrl}/${endpoint}${getParameters}`, payload).then(response => {
     const result = response.json();
 
     if (result.body && result.body.acknowledged === false) {

@@ -7,9 +7,9 @@ import { getFilters, getFilteredCharacters } from "../reducers/characters";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import styles from "./App.module.css";
+import styles from "./Campaign.module.css";
 
-export default function App() {
+export default function Campaign() {
   const dispatch = useDispatch();
   const [filters, setFilters] = useState({});
   const state = useSelector(state => state);

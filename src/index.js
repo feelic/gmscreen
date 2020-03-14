@@ -2,7 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import configureStore from "./store/configure-store";
-import App from "./containers/App";
+import Campaigns from "./containers/Campaigns";
+import Campaign from "./containers/Campaign";
+import Login from "./containers/Login";
 import Character from "./containers/Character";
 import * as serviceWorker from "./serviceWorker";
 import { readConfig } from "./services/read-config";
@@ -16,12 +18,20 @@ readConfig().then(() => {
     <Provider store={store}>
       <Router>
         <div className={styles.wrapper}>
-          <App />
           <Switch>
-            <Route exact path="/character/new">
+          <Route exact path="/login">
+            <Login />
+          </Route>
+            <Route exact path="/">
+              <Campaigns />
+            </Route>
+            <Route exact path="/campaign/:campaignId">
+              <Campaign />
+            </Route>
+            <Route exact path="/campaign/:campaignId/character/new">
               <Character />
             </Route>
-            <Route path="/character/:charId">
+            <Route path="/campaign/:campaignId/character/:charId">
               <Character />
             </Route>
           </Switch>

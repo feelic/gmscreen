@@ -1,11 +1,11 @@
 import * as types from "../constants/action-types";
 import callApi from "../services/api-client";
 
-export function readCharacters() {
+export function readCharacters(campaignId) {
   return dispatch => {
     dispatch({ type: types.READ_CHARACTERS_REQUEST });
 
-    return callApi("GET", "characters")
+    return callApi("GET", "characters", {campaign: campaignId})
       .then(({ data = {} }) => {
         return dispatch({
           type: types.READ_CHARACTERS_SUCCESS,
