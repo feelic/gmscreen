@@ -12,7 +12,6 @@ export default function callApi(method, endpoint, body) {
   const apiBaseUrl = getConfig("apiBaseUrl");
   const payload = {
     method,
-    body: JSON.stringify(body),
     // withCredentials: true,
     // credentials: 'include',
     headers: {
@@ -23,7 +22,7 @@ export default function callApi(method, endpoint, body) {
   let getParameters = '';
   // const authToken = getConfig('authToken');
 
-  if (! method === 'GET') {
+  if (method !== 'GET') {
     payload.body = JSON.stringify(body)
   }
   if (body && method === 'GET'){
