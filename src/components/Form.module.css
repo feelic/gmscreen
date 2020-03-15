@@ -1,6 +1,13 @@
 .form {
   flex-direction: column;
 }
+.closeForm {
+  position:absolute;
+  top: 46px;
+  right: 30px;
+  color: black;
+}
+
 .formTitle {
   width: 100%;
 }

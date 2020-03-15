@@ -6,10 +6,10 @@ import { getConfig } from "../services/read-config";
 export default function CharacterThumbnail(props) {
   const apiBaseUrl = getConfig("apiBaseUrl");
   const { character = {} } = props;
-  const { _id, name, image } = character;
+  const { _id, name, image, campaign: campaignId } = character;
 
   return (
-    <Link to={`character/${_id}`} className={styles.thumbnail}>
+    <Link to={`/campaign/${campaignId}/character/${_id}`} className={styles.thumbnail}>
       <h2 className={styles.name}>{name}</h2>
       <img
         className={styles.portrait}

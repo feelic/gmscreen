@@ -5,10 +5,8 @@ import {
   updateCharacter,
   deleteCharacter
 } from "../actions/characters";
+import { useParams, useHistory } from "react-router-dom";
 import CharacterForm from "../components/CharacterForm";
-import { Link, useParams, useHistory } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Character.module.css";
 
 export default function Character() {
@@ -38,9 +36,6 @@ export default function Character() {
   return (
     <div className={styles.CharacterPanel}>
       <CharacterForm actions={actions} character={character} campaignId={campaignId}/>
-      <Link className={styles.closeCharacterPanel} to={`/campaign/${campaignId}`}>
-        <FontAwesomeIcon icon={faTimes} />
-      </Link>
     </div>
   );
 }

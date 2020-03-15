@@ -5,9 +5,3 @@
   border-left: 1px solid gray;
   position: relative;
 }
-.closeCharacterPanel {
-  position:absolute;
-  top: 46px;
-  right: 30px;
-  color: black;
-}

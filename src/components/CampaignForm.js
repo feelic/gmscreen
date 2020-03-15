@@ -3,7 +3,8 @@ import ImageForm from "./ImageForm";
 import styles from "./Form.module.css";
 import Panel from "./Panel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 import { getConfig } from "../services/read-config";
 
 export default function CampaignForm(props) {
@@ -17,6 +18,7 @@ export default function CampaignForm(props) {
     (campaignId && actions.updateCampaign) || actions.createCampaign;
   const submitLabel = (campaignId && "update") || "create";
   const formTitle = (campaignId && `Edit ${name}`) || "Create new campaign";
+  const closeLink = (campaignId &&`/campaign/${campaignId}`)|| '/'
 
   useEffect(() => {
     setName(campaign.name || "");
@@ -26,7 +28,10 @@ export default function CampaignForm(props) {
 
   return (
     <Panel className={styles.form}>
-      <h1 className={styles.formTitle}>{formTitle}</h1>
+      <h2 className={styles.formTitle}>{formTitle}</h2>
+      <Link className={styles.closeForm} to={closeLink}>
+        <FontAwesomeIcon icon={faTimes} />
+      </Link>
       <div className={styles.formBlock}>
         <label htmlFor="campaignName">Name</label>
         <input

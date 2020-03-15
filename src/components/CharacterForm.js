@@ -3,7 +3,8 @@ import ImageForm from "./ImageForm";
 import styles from "./Form.module.css";
 import Panel from "./Panel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 import { getConfig } from "../services/read-config";
 
 export default function CharacterForm(props) {
@@ -19,6 +20,7 @@ export default function CharacterForm(props) {
     (charId && actions.updateCharacter) || actions.createCharacter;
   const submitLabel = (charId && "update") || "create";
   const formTitle = (charId && `Edit ${name}`) || "Create new character";
+  const closeLink = `/campaign/${campaignId}`
 
   useEffect(() => {
     setName(character.name || "");
@@ -31,6 +33,9 @@ export default function CharacterForm(props) {
   return (
     <Panel className={styles.form}>
       <h2 className={styles.formTitle}>{formTitle}</h2>
+      <Link className={styles.closeForm} to={closeLink}>
+        <FontAwesomeIcon icon={faTimes} />
+      </Link>
       <div className={styles.formBlock}>
         <label htmlFor="characterName">Name</label>
         <input
