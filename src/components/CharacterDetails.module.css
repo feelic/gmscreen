@@ -1,0 +1,9 @@
+.CharacterDetails {
+  flex-direction: column;
+}
+.close {
+  position:absolute;
+  top: 46px;
+  right: 30px;
+  color: black;
+}

@@ -7,6 +7,7 @@ import {
 } from "../actions/characters";
 import { Redirect, useParams, useHistory } from "react-router-dom";
 import CharacterForm from "../components/CharacterForm";
+import CharacterDetails from "../components/CharacterDetails";
 import styles from "./Character.module.css";
 
 export default function Character() {
@@ -15,7 +16,7 @@ export default function Character() {
   const history = useHistory();
   const state = useSelector(state => state);
   const character = state.characters[charId] || {};
-  const campaign = state.campaigns[campaignId];
+  const campaign = state.campaigns[campaignId] || {};
   const user = state.user;
   const isCampaignAuthor = user && user.id === campaign.author;
 
@@ -34,15 +35,22 @@ export default function Character() {
     }
   };
 
-  if (! charId) {
-    return <Redirect to={`/campaign/${campaignId}`} />
+  if (!charId && ! isCampaignAuthor) {
+    return <Redirect to={`/campaign/${campaignId}`} />;
   }
 
   return (
     <div className={styles.CharacterPanel}>
-    {isCampaignAuthor &&
-      <CharacterForm actions={actions} character={character} campaignId={campaignId}/>
-    }
+      {isCampaignAuthor && (
+        <CharacterForm
+          actions={actions}
+          character={character}
+          campaignId={campaignId}
+        />
+      )}
+      {!isCampaignAuthor && (
+        <CharacterDetails character={character} campaignId={campaignId} />
+      )}
     </div>
   );
 }

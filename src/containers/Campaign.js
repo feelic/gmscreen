@@ -13,7 +13,6 @@ import { getFilters, getFilteredCharacters } from "../reducers/characters";
 import {
   Switch,
   Route,
-  Redirect,
   useParams,
   useHistory
 } from "react-router-dom";
@@ -55,10 +54,6 @@ export default function Campaign() {
       history.push(`/`);
     }
   };
-
-  if (campaignId && !campaign._id) {
-    return <Redirect to="/" />;
-  }
 
   return (
     <div className={styles.Campaign + " " + styles[campaign.theme]}>
