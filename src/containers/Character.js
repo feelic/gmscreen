@@ -37,7 +37,7 @@ export default function Character() {
 
   return (
     <div className={styles.CharacterPanel}>
-      <CharacterForm actions={actions} character={character} />
+      <CharacterForm actions={actions} character={character} campaignId={campaignId}/>
       <Link className={styles.closeCharacterPanel} to={`/campaign/${campaignId}`}>
         <FontAwesomeIcon icon={faTimes} />
       </Link>

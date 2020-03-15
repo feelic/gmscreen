@@ -8,7 +8,7 @@ import { getConfig } from "../services/read-config";
 
 export default function CharacterForm(props) {
   const apiBaseUrl = getConfig("apiBaseUrl");
-  const { character = {}, actions } = props;
+  const { character = {}, campaignId, actions } = props;
   const [name, setName] = useState("");
   const [faction, setFaction] = useState("");
   const [description, setDescription] = useState("");
@@ -90,7 +90,7 @@ export default function CharacterForm(props) {
       <div className={styles.actions}>
         <button
           onClick={() =>
-            submitAction({ name, faction, description, status, image })
+            submitAction({ name, faction, description, status, image, campaign: campaignId})
           }
         >
           <FontAwesomeIcon icon={faCheck} /> {submitLabel}
