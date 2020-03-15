@@ -34,15 +34,16 @@ export default function FiltersBar(props) {
             <h2>{filterId}</h2>
             {availableFilters[filterId].map(filterValue => {
               const label = (filterValue !== '' && filterValue) || `no ${filterId}`;
+              const filterHtmlId = `${filterId}-${filterValue || 'no-value'}`
 
               return (
                 <div key={filterValue} className={styles.filterValue}>
                   <input
                     type="checkBox"
-                    id={filterValue}
+                    id={filterHtmlId}
                     onChange={() => handleChange(filterId, filterValue)}
                   />
-                  <label htmlFor={filterValue}>{label}</label>
+                  <label htmlFor={filterHtmlId}>{label}</label>
                 </div>
               );
             })}
