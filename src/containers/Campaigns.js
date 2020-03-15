@@ -10,6 +10,7 @@ export default function Campaigns() {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
   const campaigns = Object.values(state.campaigns);
+  const isAdmin = Boolean(state.user && state.user.id);
 
   useEffect(() => {
     dispatch(readCampaigns());
@@ -18,9 +19,11 @@ export default function Campaigns() {
   return (
     <div className={styles.CampaignsList}>
       <h1>Welcome to GMScreen</h1>
-      <Link className={styles.createButton} to={"campaign/new"}>
-        <FontAwesomeIcon icon={faPlus} /> Create a new campaign
-      </Link>
+      {isAdmin && (
+        <Link className={styles.createButton} to={"campaign/new"}>
+          <FontAwesomeIcon icon={faPlus} /> Create a new campaign
+        </Link>
+      )}
       <ul>
         {campaigns.map(campaign => {
           return (

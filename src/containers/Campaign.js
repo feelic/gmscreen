@@ -10,7 +10,13 @@ import {
 import CampaignForm from "../components/CampaignForm";
 import CampaignHeader from "../components/CampaignHeader";
 import { getFilters, getFilteredCharacters } from "../reducers/characters";
-import { Switch, Route, useParams, useHistory } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  Redirect,
+  useParams,
+  useHistory
+} from "react-router-dom";
 import Character from "./Character";
 import CharactersList from "../components/CharactersList";
 import styles from "./Campaign.module.css";
@@ -24,6 +30,9 @@ export default function Campaign() {
   const campaign = state.campaigns[campaignId] || {};
   const characters = getFilteredCharacters(state, filters);
   const availableFilters = getFilters(state);
+  const user = state.user;
+  const isAdmin = user && user.id;
+  const isCampaignAuthor = user && user.id === campaign.author;
 
   useEffect(() => {
     if (campaignId) {
@@ -47,29 +56,41 @@ export default function Campaign() {
     }
   };
 
+  if (campaignId && !campaign._id) {
+    return <Redirect to="/" />;
+  }
+
   return (
-    <div className={styles.Campaign + ' ' + styles[campaign.theme]}>
-      <CampaignHeader  {...{availableFilters, filters, setFilters, campaign}}/>
+    <div className={styles.Campaign + " " + styles[campaign.theme]}>
+      <CampaignHeader
+        {...{
+          availableFilters,
+          filters,
+          setFilters,
+          campaign,
+          isCampaignAuthor
+        }}
+      />
       <div className={styles.contentWrapper}>
-      <Switch>
+        <Switch>
         <Route exact path="/campaign/new">
-          <CampaignForm actions={actions} campaign={campaign} />
+          <CampaignForm actions={actions} campaign={campaign} user={user} isAdmin={isAdmin}/>
         </Route>
-        <Route exact path="/campaign/:campaignId/edit">
-          <CampaignForm actions={actions} campaign={campaign} />
-        </Route>
-        <Route exact path="/campaign/:campaignId/character/new">
-          <CharactersList characters={characters}/>
-          <Character />
-        </Route>
-        <Route path="/campaign/:campaignId/character/:charId">
-          <CharactersList characters={characters}/>
-          <Character />
-        </Route>
-        <Route path="/campaign/:campaignId">
-          <CharactersList characters={characters}/>
-        </Route>
-      </Switch>
+          <Route exact path="/campaign/:campaignId/edit">
+            <CampaignForm actions={actions} campaign={campaign} user={user} isCampaignAuthor={isCampaignAuthor} />
+          </Route>
+          <Route exact path="/campaign/:campaignId/character/new">
+            <CharactersList characters={characters} />
+            <Character />
+          </Route>
+          <Route path="/campaign/:campaignId/character/:charId">
+            <CharactersList characters={characters} />
+            <Character />
+          </Route>
+          <Route path="/campaign/:campaignId">
+            <CharactersList characters={characters} />
+          </Route>
+        </Switch>
       </div>
     </div>
   );

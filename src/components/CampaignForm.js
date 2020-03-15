@@ -4,14 +4,14 @@ import styles from "./Form.module.css";
 import Panel from "./Panel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { getConfig } from "../services/read-config";
 
 export default function CampaignForm(props) {
   const apiBaseUrl = getConfig("apiBaseUrl");
-  const { campaign = {}, actions } = props;
+  const { campaign = {}, actions, user, isCampaignAuthor } = props;
   const [name, setName] = useState("");
-  const [theme, setTheme] = useState("");
+  const [theme, setTheme] = useState("fantasy");
   const [image, setImage] = useState();
   const campaignId = campaign._id;
   const submitAction =
@@ -25,6 +25,11 @@ export default function CampaignForm(props) {
     setTheme(campaign.theme || "");
     setImage(campaign.image);
   }, [campaign, campaignId]);
+
+
+  if (! isCampaignAuthor) {
+    return <Redirect to={`/campaign/${campaignId}`} />;
+  }
 
   return (
     <Panel className={styles.form}>
@@ -69,7 +74,7 @@ export default function CampaignForm(props) {
         />
       </div>
       <div className={styles.actions}>
-        <button onClick={() => submitAction({ name, theme, image })}>
+        <button onClick={() => submitAction({ name, theme, image, author: user.id })}>
           <FontAwesomeIcon icon={faCheck} /> {submitLabel}
         </button>
         {campaignId && (
