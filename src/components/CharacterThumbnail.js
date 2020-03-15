@@ -9,7 +9,7 @@ export default function CharacterThumbnail(props) {
   const { _id, name, image } = character;
 
   return (
-    <Link to={`/character/${_id}`} className={styles.thumbnail}>
+    <Link to={`character/${_id}`} className={styles.thumbnail}>
       <h2 className={styles.name}>{name}</h2>
       <img
         className={styles.portrait}

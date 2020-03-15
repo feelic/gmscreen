@@ -8,3 +8,4 @@
 * [ ] add hidden bios system
 * [ ] add hidden characters system
 * [ ] calculate available filters only from visible characters
+ 

@@ -1,12 +1,14 @@
-.CharacterForm {
+.form {
+  flex-direction: column;
 }
 .formTitle {
-  width: calc(100% - 40px);
+  width: 100%;
 }
 .formBlock {
   margin: 10px 0;
   display: flex;
   flex-direction: column;
+  width: 100%;
   /* justify-content: space-between; */
   /* align-items: center; */
 }

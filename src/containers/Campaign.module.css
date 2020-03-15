@@ -2,6 +2,7 @@
   width: 100%;
   display: flex;
   background-size: cover;
+  flex-direction: column;
 }
 
 .Campaign.fantasy {
@@ -12,4 +13,8 @@
 }
 .Campaign.wod {
   background-image: url('../assets/wod.jpg');
+}
+.contentWrapper {
+  display: flex;
+  flex-direction: row;
 }

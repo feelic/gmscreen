@@ -8,6 +8,7 @@ import {
   deleteCampaign
 } from "../actions/campaigns";
 import CampaignForm from "../components/CampaignForm";
+import CampaignHeader from "../components/CampaignHeader";
 import { getFilters, getFilteredCharacters } from "../reducers/characters";
 import { Switch, Route, useParams, useHistory } from "react-router-dom";
 import Character from "./Character";
@@ -48,6 +49,8 @@ export default function Campaign() {
 
   return (
     <div className={styles.Campaign + ' ' + styles[campaign.theme]}>
+      <CampaignHeader  {...{availableFilters, filters, setFilters, campaign}}/>
+      <div className={styles.contentWrapper}>
       <Switch>
         <Route exact path="/campaign/new">
           <CampaignForm actions={actions} campaign={campaign} />
@@ -56,17 +59,18 @@ export default function Campaign() {
           <CampaignForm actions={actions} campaign={campaign} />
         </Route>
         <Route exact path="/campaign/:campaignId/character/new">
-          <CharactersList {...{availableFilters, filters, setFilters, characters}}/>
+          <CharactersList characters={characters}/>
           <Character />
         </Route>
         <Route path="/campaign/:campaignId/character/:charId">
-          <CharactersList {...{availableFilters, filters, setFilters, characters}}/>
+          <CharactersList characters={characters}/>
           <Character />
         </Route>
         <Route path="/campaign/:campaignId">
-          <CharactersList {...{availableFilters, filters, setFilters, characters}}/>
+          <CharactersList characters={characters}/>
         </Route>
       </Switch>
+      </div>
     </div>
   );
 }

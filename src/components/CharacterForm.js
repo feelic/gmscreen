@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ImageForm from "./ImageForm";
 import styles from "./Form.module.css";
+import Panel from "./Panel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { getConfig } from "../services/read-config";
@@ -28,8 +29,8 @@ export default function CharacterForm(props) {
   }, [character, charId]);
 
   return (
-    <div className={styles.CharacterForm}>
-      <h1 className={styles.formTitle}>{formTitle}</h1>
+    <Panel className={styles.form}>
+      <h2 className={styles.formTitle}>{formTitle}</h2>
       <div className={styles.formBlock}>
         <label htmlFor="characterName">Name</label>
         <input
@@ -100,6 +101,6 @@ export default function CharacterForm(props) {
           </button>
         )}
       </div>
-    </div>
+    </Panel>
   );
 }

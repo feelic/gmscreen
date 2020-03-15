@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ImageForm from "./ImageForm";
 import styles from "./Form.module.css";
+import Panel from "./Panel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { getConfig } from "../services/read-config";
@@ -24,7 +25,7 @@ export default function CampaignForm(props) {
   }, [campaign, campaignId]);
 
   return (
-    <div className={styles.Form}>
+    <Panel className={styles.form}>
       <h1 className={styles.formTitle}>{formTitle}</h1>
       <div className={styles.formBlock}>
         <label htmlFor="campaignName">Name</label>
@@ -76,6 +77,6 @@ export default function CampaignForm(props) {
           </button>
         )}
       </div>
-    </div>
+    </Panel>
   );
 }
