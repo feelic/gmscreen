@@ -6,6 +6,5 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: baseline;
-  height: calc(100% - 97px);
   overflow-y: scroll;
 }
