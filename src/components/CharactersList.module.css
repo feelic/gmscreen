@@ -1,0 +1,29 @@
+.ListPanel {
+  flex-grow: 2;
+  height: 100%;
+  position: relative;
+}
+.header {
+  margin: 15px;
+  padding: 15px;
+  background-color: rgba(200, 200, 200, 0.7);
+  display: flex;
+  align-items: center;
+}
+.header h1 {
+  flex-grow: 2;
+  margin: 0;
+}
+.createButton {
+  color: black;
+  text-decoration: none;
+  margin: 0 10px;
+}
+.characterList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: baseline;
+  height: calc(100% - 97px);
+  overflow-y: scroll;
+}

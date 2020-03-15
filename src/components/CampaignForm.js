@@ -38,13 +38,15 @@ export default function CampaignForm(props) {
       </div>
       <div className={styles.formBlock}>
         <label htmlFor="campaignTheme">Theme</label>
-        <input
-          type="text"
+        <select
           id="campaignTheme"
           value={theme}
-          placeholder="Theme of the campaign"
           onChange={e => setTheme(e.target.value)}
-        />
+        >
+          <option value="fantasy">Fantasy</option>
+          <option value="scifi">Science fiction</option>
+          <option value="wod">World of Darkness</option>
+        </select>
       </div>
       <div className={styles.formBlock}>
         <label htmlFor="campaignImage">Background image</label>

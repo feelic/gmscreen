@@ -5,7 +5,6 @@ import configureStore from "./store/configure-store";
 import Campaigns from "./containers/Campaigns";
 import Campaign from "./containers/Campaign";
 import Login from "./containers/Login";
-import Character from "./containers/Character";
 import * as serviceWorker from "./serviceWorker";
 import { readConfig } from "./services/read-config";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -30,14 +29,6 @@ readConfig().then(() => {
             </Route>
             <Route path="/campaign/:campaignId">
               <Campaign />
-            </Route>
-            <Route exact path="/campaign/:campaignId/character/new">
-              <Campaign />
-              <Character />
-            </Route>
-            <Route path="/campaign/:campaignId/character/:charId">
-              <Campaign />
-              <Character />
             </Route>
           </Switch>
         </div>

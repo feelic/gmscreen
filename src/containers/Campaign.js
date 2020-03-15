@@ -7,18 +7,14 @@ import {
   updateCampaign,
   deleteCampaign
 } from "../actions/campaigns";
-import CharacterThumbnail from "../components/CharacterThumbnail";
 import CampaignForm from "../components/CampaignForm";
-import FiltersBar from "../components/FiltersBar";
 import { getFilters, getFilteredCharacters } from "../reducers/characters";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { Link, useParams, useHistory } from "react-router-dom";
-import { getConfig } from "../services/read-config";
+import { Switch, Route, useParams, useHistory } from "react-router-dom";
+import Character from "./Character";
+import CharactersList from "../components/CharactersList";
 import styles from "./Campaign.module.css";
 
 export default function Campaign() {
-  const apiBaseUrl = getConfig("apiBaseUrl");
   const dispatch = useDispatch();
   const history = useHistory();
   const { campaignId } = useParams();
@@ -29,7 +25,7 @@ export default function Campaign() {
   const availableFilters = getFilters(state);
 
   useEffect(() => {
-    if(campaignId) {
+    if (campaignId) {
       dispatch(readCampaigns());
       dispatch(readCharacters(campaignId));
     }
@@ -50,31 +46,27 @@ export default function Campaign() {
     }
   };
 
-  if (!campaignId) {
-    return <CampaignForm actions={actions} campaign={campaign} />
-  }
   return (
-    <div className={styles.ListPanel}>
-      <div className={styles.header}>
-        <h1>Characters</h1>
-        <FiltersBar
-          availableFilters={availableFilters}
-          filters={filters}
-          onChange={newFilter => {
-            setFilters(newFilter);
-          }}
-        />
-        <Link className={styles.createButton} to={"/character/new"}>
-          <FontAwesomeIcon icon={faPlus} /> new character
-        </Link>
-      </div>
-      <div className={styles.characterList}>
-        {characters.map(character => {
-          return (
-            <CharacterThumbnail key={character._id} character={character} />
-          );
-        })}
-      </div>
+    <div className={styles.Campaign + ' ' + styles[campaign.theme]}>
+      <Switch>
+        <Route exact path="/campaign/new">
+          <CampaignForm actions={actions} campaign={campaign} />
+        </Route>
+        <Route exact path="/campaign/:campaignId/edit">
+          <CampaignForm actions={actions} campaign={campaign} />
+        </Route>
+        <Route exact path="/campaign/:campaignId/character/new">
+          <CharactersList {...{availableFilters, filters, setFilters, characters}}/>
+          <Character />
+        </Route>
+        <Route path="/campaign/:campaignId/character/:charId">
+          <CharactersList {...{availableFilters, filters, setFilters, characters}}/>
+          <Character />
+        </Route>
+        <Route path="/campaign/:campaignId">
+          <CharactersList {...{availableFilters, filters, setFilters, characters}}/>
+        </Route>
+      </Switch>
     </div>
   );
 }

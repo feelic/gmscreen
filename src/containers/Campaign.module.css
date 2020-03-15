@@ -1,28 +1,15 @@
-.ListPanel {
-  flex-grow: 2;
-  height: 100%;
-  position: relative;
-}
-.header {
-  margin: 15px;
-  padding: 15px;
-  background-color: rgba(200, 200, 200, 0.7);
+.Campaign {
+  width: 100%;
   display: flex;
-  align-items: center;
+  background-size: cover;
 }
-.header h1 {
-  flex-grow: 2;
-  margin: 0;
+
+.Campaign.fantasy {
+  background-image: url('../assets/tavern.jpg');
 }
-.createButton {
-  color: black;
-  text-decoration: none;
+.Campaign.scifi {
+  background-image: url('../assets/scifi.jpg');
 }
-.characterList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: baseline;
-  height: calc(100% - 97px);
-  overflow-y: scroll;
+.Campaign.wod {
+  background-image: url('../assets/wod.jpg');
 }
