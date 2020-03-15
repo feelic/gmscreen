@@ -35,7 +35,7 @@ export default function Campaign() {
   const actions = {
     createCampaign: values => {
       dispatch(createCampaign(values));
-      history.push(`/campaign/${campaignId}`);
+      history.push(`/`);
     },
     updateCampaign: values => {
       dispatch(updateCampaign(campaignId, values));
@@ -43,7 +43,7 @@ export default function Campaign() {
     },
     deleteCampaign: () => {
       dispatch(deleteCampaign(campaignId));
-      history.push(`/campaign/${campaignId}`);
+      history.push(`/`);
     }
   };
 

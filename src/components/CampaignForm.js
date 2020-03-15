@@ -18,7 +18,7 @@ export default function CampaignForm(props) {
     (campaignId && actions.updateCampaign) || actions.createCampaign;
   const submitLabel = (campaignId && "update") || "create";
   const formTitle = (campaignId && `Edit ${name}`) || "Create new campaign";
-  const closeLink = (campaignId &&`/campaign/${campaignId}`)|| '/'
+  const closeLink = (campaignId && `/campaign/${campaignId}`) || "/";
 
   useEffect(() => {
     setName(campaign.name || "");
@@ -69,11 +69,7 @@ export default function CampaignForm(props) {
         />
       </div>
       <div className={styles.actions}>
-        <button
-          onClick={() =>
-            submitAction({ name, theme, image })
-          }
-        >
+        <button onClick={() => submitAction({ name, theme, image })}>
           <FontAwesomeIcon icon={faCheck} /> {submitLabel}
         </button>
         {campaignId && (
