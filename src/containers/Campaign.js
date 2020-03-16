@@ -10,12 +10,7 @@ import {
 import CampaignForm from "../components/CampaignForm";
 import CampaignHeader from "../components/CampaignHeader";
 import { getFilters, getFilteredCharacters } from "../reducers/characters";
-import {
-  Switch,
-  Route,
-  useParams,
-  useHistory
-} from "react-router-dom";
+import { Switch, Route, useParams, useHistory } from "react-router-dom";
 import Character from "./Character";
 import CharactersList from "../components/CharactersList";
 import styles from "./Campaign.module.css";
@@ -68,11 +63,21 @@ export default function Campaign() {
       />
       <div className={styles.contentWrapper}>
         <Switch>
-        <Route exact path="/campaign/new">
-          <CampaignForm actions={actions} campaign={campaign} user={user} isAdmin={isAdmin}/>
-        </Route>
+          <Route exact path="/campaign/new">
+            <CampaignForm
+              actions={actions}
+              campaign={campaign}
+              user={user}
+              isAdmin={isAdmin}
+            />
+          </Route>
           <Route exact path="/campaign/:campaignId/edit">
-            <CampaignForm actions={actions} campaign={campaign} user={user} isCampaignAuthor={isCampaignAuthor} />
+            <CampaignForm
+              actions={actions}
+              campaign={campaign}
+              user={user}
+              isCampaignAuthor={isCampaignAuthor}
+            />
           </Route>
           <Route exact path="/campaign/:campaignId/character/new">
             <CharactersList characters={characters} />

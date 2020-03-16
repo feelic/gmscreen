@@ -27,7 +27,7 @@ export default function CampaignForm(props) {
   }, [campaign, campaignId]);
 
 
-  if (! isCampaignAuthor) {
+  if (campaignId && ! isCampaignAuthor) {
     return <Redirect to={`/campaign/${campaignId}`} />;
   }
 
